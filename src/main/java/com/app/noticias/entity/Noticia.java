@@ -1,6 +1,5 @@
 package com.app.noticias.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,23 +26,17 @@ public class Noticia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
     private String titulo;
 
-    @Column(nullable = false)
     private String desc_corta;
 
-    @Column(nullable = false)
     private String desc_larga;
 
-    @Column(nullable = false)
-    private Integer imagen;
+    private String imagen;
 
-    @Column(nullable = false)
-    private Integer contador_visitas;
+    private Integer contadorVisitas;
 
-    @Column(nullable = false)
-    private Integer contador_recomend;
+    private Integer contadorRecomend;
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
