@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -30,8 +31,10 @@ public class Noticia {
 
     private String desc_corta;
 
+    @Lob
     private String desc_larga;
 
+    @Lob
     private String imagen;
 
     private Integer contadorVisitas;

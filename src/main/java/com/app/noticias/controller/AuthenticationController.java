@@ -56,7 +56,7 @@ public class AuthenticationController {
     public ResponseEntity<?> signup(@RequestBody SignupRequest signUpRequest) {
         Usuario usuario = authenticationService.signup(signUpRequest);
 
-        String activationCode = "http://localhost:8080/activate?email="
+        String activationCode = "http://localhost:8080/api/auth/activate?email="
                 + signUpRequest.getEmail()
                 + "&uuid=" + usuario.getCodigoVerificacion();
 
