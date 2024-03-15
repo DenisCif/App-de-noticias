@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.app.noticias.dto.NoticiaDTO;
 import com.app.noticias.entity.Noticia;
+import com.app.noticias.entity.Usuario;
 import com.app.noticias.entity.UsuarioNoticiaLike;
 import com.app.noticias.repository.NoticiaRepository;
 import com.app.noticias.repository.UsuarioNoticiaLikeRepository;
+import com.app.noticias.repository.UsuarioRepository;
 import com.app.noticias.service.NoticiaService;
 
 @Service
@@ -21,6 +23,9 @@ public class NoticiaServiceImpl implements NoticiaService {
 
     @Autowired
     private UsuarioNoticiaLikeRepository usuarioNoticiaLikeRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @Override
     public List<NoticiaDTO> cargarNoticias(Boolean porCategoria, Integer idCategoria, Integer idUsuario) {
@@ -109,4 +114,20 @@ public class NoticiaServiceImpl implements NoticiaService {
         return like != null;
     }
 
+    @Override
+    public void darLike(Integer idUsuario, Integer idNoticia) {
+        @SuppressWarnings("null")
+        Usuario usuario = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con id: " + idUsuario));
+
+        @SuppressWarnings("null")
+        Noticia noticia = noticiaRepository.findById(idNoticia)
+                .orElseThrow(() -> new RuntimeException("Noticia no encontrada con id: " + idNoticia));
+
+        UsuarioNoticiaLike like = new UsuarioNoticiaLike();
+        like.setUsuario(usuario);
+        like.setNoticia(noticia);
+
+        usuarioNoticiaLikeRepository.save(like);
+    }
 }

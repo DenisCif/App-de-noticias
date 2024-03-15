@@ -11,4 +11,6 @@ public interface NoticiaService {
     List<NoticiaDTO> cargarNoticiasRelacionadas(Integer idNoticia, Integer idUsuario);
 
     NoticiaDTO mostrarNoticia(Integer idNoticia, Integer idUsuario);
+
+    void darLike(Integer idUsuario, Integer idNoticia);
 }
